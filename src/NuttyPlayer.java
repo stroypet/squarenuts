@@ -33,8 +33,9 @@ public class NuttyPlayer implements PokerSquaresPlayer {
 
 	@Override
 	public int[] getPlay(Card card, long millisRemaining) {
-		// TODO Auto-generated method stub
-		return null;
+		int[] bestPlay = {0,0};
+		buildProbabilitiesTable(card);
+		return bestPlay;
 	}
 
 	@Override
@@ -55,20 +56,11 @@ public class NuttyPlayer implements PokerSquaresPlayer {
 	 * the probability of getting two aces, N = 52 because there are 52 cards in a deck, and n = 3 because 3 cards
 	 * were sampled.
 	 **/
-	public Float[][][] buildProbabilitiesTable() {
+	public Float[][][] buildProbabilitiesTable(Card card) {
 		//nothing, pair, 2-pair, 3-kind, straight, flush, boat, 4-kind, straight-flush, royal-flush
-		//20 probabilities for each position. Affects 2 hand combos (10x2)
+		//20 probabilities for each position. Affects 2 hand combos (10x2)	
+		Float[][][] ProbabilitiesTable = new Float[5][5][20];
 		return null;
-	}
-	
-	public Float[] probCalculator(int k, int x, String cardType, int N, int s) {
-		Float[] positionProbs = new Float[20];
-		k = 0;
-		x = 0; //What we are pairing.
-		N = 0; //Number of cards in deck.
-		s = 0; //Number of cards sampled.
-		
-		return positionProbs;
 	}
 
 	public static void main(String[] args) {
