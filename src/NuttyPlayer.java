@@ -1,5 +1,23 @@
+import java.util.Random;
+
 
 public class NuttyPlayer implements PokerSquaresPlayer {
+	
+	private final int SIZE = 5; // number of rows/columns in square grid
+	private final int NUM_POS = SIZE * SIZE; // number of positions in square grid
+	private final int NUM_CARDS = Card.NUM_CARDS; // number of cards in deck
+	private Random random = new Random(); // pseudorandom number generator for Monte Carlo simulation 
+	private int[] plays = new int[NUM_POS]; // positions of plays so far (index 0 through numPlays - 1) recorded as integers using row-major indices.
+	// row-major indices: play (r, c) is recorded as a single integer r * SIZE + c (See http://en.wikipedia.org/wiki/Row-major_order)
+	// From plays index [numPlays] onward, we maintain a list of yet unplayed positions.
+	private int numPlays = 0; // number of Cards played into the grid so far
+	private PokerSquaresPointSystem system; // point system
+	private Card[][] grid = new Card[SIZE][SIZE]; // grid with Card objects or null (for empty positions)
+	private Card[] simDeck = Card.getAllCards(); // a list of all Cards. As we learn the index of cards in the play deck,
+	                                             // we swap each dealt card to its correct index.  Thus, from index numPlays 
+												 // onward, we maintain a list of undealt cards for MC simulation.
+	private int[][] legalPlayLists = new int[NUM_POS][NUM_POS]; // stores legal play lists indexed by numPlays (depth)
+	// (This avoids constant allocation/deallocation of such lists during the greedy selections of MC simulations.)
 
 	@Override
 	public void setPointSystem(PokerSquaresPointSystem system, long millis) {
@@ -37,12 +55,20 @@ public class NuttyPlayer implements PokerSquaresPlayer {
 	 * the probability of getting two aces, N = 52 because there are 52 cards in a deck, and n = 3 because 3 cards
 	 * were sampled.
 	 **/
-	public Float[][] getProbabilitiesTable(int position) {
-		Float[] handProbArray = new Float[20]; //nothing, pair, 2-pair, 3-kind, straight, flush, boat, 4-kind, straight-flush, royal-flush
-		Float[][] positionProbabilities = new Float[5][5]; // Need 20 in above line, each position affects 2 hand combos (10x2)
+	public Float[][][] buildProbabilitiesTable() {
+		//nothing, pair, 2-pair, 3-kind, straight, flush, boat, 4-kind, straight-flush, royal-flush
+		//20 probabilities for each position. Affects 2 hand combos (10x2)
+		return null;
+	}
+	
+	public Float[] probCalculator(int k, int x, String cardType, int N, int s) {
+		Float[] positionProbs = new Float[20];
+		k = 0;
+		x = 0; //What we are pairing.
+		N = 0; //Number of cards in deck.
+		s = 0; //Number of cards sampled.
 		
-		
-		return positionProbabilities;
+		return positionProbs;
 	}
 
 	public static void main(String[] args) {
