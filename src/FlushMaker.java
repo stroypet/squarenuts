@@ -94,7 +94,7 @@ public class FlushMaker implements PokerSquaresPlayer {
 	}
 	
 	public static void main(String[] args) {
-		PokerSquaresPointSystem system = PokerSquaresPointSystem.getAmeritishPointSystem();
+		PokerSquaresPointSystem system = PokerSquaresPointSystem.getAmericanPointSystem();
 		System.out.println(system);
 		new PokerSquares(new FlushMaker(), system).play(); // play a single game, taken from greedyMC
 	}
