@@ -49,21 +49,23 @@ public class FlushMaker implements PokerSquaresPlayer {
 		int[] hand8Odds = new int[9];
 		int[] hand9Odds = new int[9];
 		//hand[pair,2pair,3kind,straight,flush,fullhouse,4kind,straightflush,royal]
-    	for (int i = 0; i < 5; i++){
-    		for (int j = 0; j < 5; j++){
+    	//for (int i = 0; i < 5; i++){
+    		//for (int j = 0; j < 5; j++){
     			//Better to loop through here?
     			//Make call to updateHandOdds with each hand (i.e. hand [0][0-4])
-    			hand0Odds[0] = 0; //pair
-    			hand0Odds[1] = 0; //2pair
-    			hand0Odds[2] = 0; //3kind
-    			hand0Odds[3] = 0; //straight
-    			hand0Odds[4] = 0; //flush
-    			hand0Odds[5] = 0; //fullhouse
-    			hand0Odds[6] = 0; //4kind
-    			hand0Odds[7] = 0; //straightflush
-    			hand0Odds[8] = 0; //royal
-    		}
-    	}
+    	hand0Odds = updateHandOdds(grid[0][0], grid[0][1], grid[0][2], grid[0][3], grid[0][4]); //pair
+    	hand1Odds = updateHandOdds(grid[1][0], grid[1][1], grid[1][2], grid[1][3], grid[1][4]);
+    	hand2Odds = updateHandOdds(grid[2][0], grid[2][1], grid[2][2], grid[2][3], grid[2][4]);
+    	hand3Odds = updateHandOdds(grid[3][0], grid[3][1], grid[3][2], grid[3][3], grid[3][4]);
+    	hand4Odds = updateHandOdds(grid[4][0], grid[4][1], grid[4][2], grid[4][3], grid[4][4]);
+    			
+    	hand5Odds = updateHandOdds(grid[0][0], grid[1][0], grid[2][0], grid[3][0], grid[4][0]);
+    	hand6Odds = updateHandOdds(grid[0][1], grid[1][1], grid[2][1], grid[3][1], grid[4][1]);
+    	hand7Odds = updateHandOdds(grid[0][2], grid[1][2], grid[2][2], grid[3][2], grid[4][2]);
+    	hand8Odds = updateHandOdds(grid[0][3], grid[1][3], grid[2][3], grid[3][3], grid[4][3]);
+    	hand9Odds = updateHandOdds(grid[0][4], grid[1][4], grid[2][4], grid[3][4], grid[4][4]);
+    		//}
+    	//}
     	
     	
     	
@@ -72,8 +74,8 @@ public class FlushMaker implements PokerSquaresPlayer {
     }
     //http://stattrek.com/probability-distributions/hypergeometric.aspx
     //Multiply probability by points gained from actually making the hand.
-    public int[] updateHandOdds(Card card, Card card2, Card card3, Card card4, Card card5, long millisRemaining){
-    	int[] odds = new int[8];
+    public int[] updateHandOdds(Card card, Card card2, Card card3, Card card4, Card card5){
+    	int[] odds = new int[9];
     	
     	
     	
